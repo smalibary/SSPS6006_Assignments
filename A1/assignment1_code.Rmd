@@ -1,0 +1,90 @@
+---
+title: "How Relationship Satisfaction Affects the Wellbeing of Remote Employees"
+author: "Salem Malibary"
+date: "2024-09-03"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Since my Ph.D is about the exposure of nature and its impact on the remote workers' wellbeing. This assignment will try to align to has insightful data analysis that could some how correliate to what I might do. However, just to clarify that data that is used is not remote workers but instead normal workers which also could be helpful.
+
+# INTRODUCTION
+
+The researcher’s Ph.D. thesis is about the remote workers and their well-being change due to the change of exposure to nature (such as greenery, window view, going to park, etc). The way of working has been changing from working in workplace into working into remote works which is more convenient and flexible. This change occurred due to the rise of use of internet, however, COVID19 made this change exponentially faster. Even though we passed the lockdown of the COVID19, workers start to integrate hybrid workplace where on some days they work from home and some of other days they work from the office. 
+
+While the traditional workplace has been extensively studied in the past decades, this shift to remote work has created a gap where more studies are needed to explore it. The home workspace has multiple different challenges that other places couldn’t have like that relates to family, income, urban, and many more. The study aims to investigate the relationship between the relational satisfaction and worker’s wellbeing, seeking to trying to understand the current gap and understanding the current remote work. 
+
+#
+
+
+```{r}
+library(haven)
+library(purrr)
+library(labelled)
+library(tidyverse)
+library(writexl)  # Load the writexl package
+
+# Read the .sav file
+data <- haven::read_sav("A1/data.sav")
+
+# Convert the labelled data to factors with labels
+data_with_labels <- haven::as_factor(data)
+
+# Extract the variable labels (optional, depending on what you want to do with them)
+labels <- purrr::map(data, labelled::var_label)
+
+# Export the data to an Excel file
+write_xlsx(data_with_labels, "A1/data_with_labels.xlsx")
+
+# Convert the labels to a data frame
+labels_df <- as.data.frame(do.call(rbind, labels))
+
+# Add column names for better understanding
+labels_df <- tibble::rownames_to_column(labels_df, var = "Variable")
+
+# Write the labels data frame to an Excel file
+write_xlsx(labels_df, "A1/labels.xlsx")
+
+glimpse(data)
+```
+
+```{r}
+glimpse(data_with_labels)
+```
+
+```{r}
+
+# Read the .sav file using haven package
+data <- haven::read_sav("data.sav")
+
+# Convert the labelled data to factors with labels
+data_with_labels <- haven::as_factor(data)
+
+# View the first few rows of the data
+print(data_with_labels)
+
+# View the labels in a specific column, e.g., gender
+print(data_with_labels$gender)
+
+
+```
+
+```{r}
+# Set working directory to the directory containing the script
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+# Or manually set it to the correct path if rstudioapi is not available
+setwd("C:/Rprojects/SSPS6006_Assignments")
+
+# Now try reading the .sav file again
+data <- haven::read_sav("data.sav")
+```
+
+```{r}
+list.files()
+```
+
