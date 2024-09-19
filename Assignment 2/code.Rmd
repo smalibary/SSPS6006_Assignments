@@ -1,0 +1,142 @@
+---
+title: "Assignment2"
+author: "Salem Malibary"
+date: "2024-09-19"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+# This chunk has all the resources needed to create the report. These are the included packages which needed to conduct the report
+library(tidyverse)
+library(haven)
+library(labelled)
+library(knitr)
+library(tibble)
+
+# This is the original dataset which has all the variables and observations
+data <- haven::read_sav("data.sav")
+
+```
+
+---
+
+# Methods
+
+## Dataset Description
+
+The information for this study named "Reactions of Financial Professionals to Workaholism in Nigeria" was sourced from the Harvard Dataverse - a reliable and openly available database, for research information - which is a public data repository.The dataset contains feedback from a survey conducted across Nigeria involving employees in the industry.
+
+The survey explore into work habits such as workaholism and investigates facets of employee well-being,career satisfaction and relationships within the workplace hierarchy. 
+
+The dataset falls into the business and management category. Includes various important factors essential for comprehending workaholic behaviors. The dataset includes various essential variables, such as "**working excessively**", "**working compulsively**", "**career prospects**", "**leader-member exchange**", and "cynicism".
+
+The variables in this dataset are essential for comprehending "**workaholic behaviors**", "**employee satisfaction**", and "**leadership dynamics**". This data holds relevance for studying the elements that influence the "**affect employee well-being and organizational relationships**".
+
+## Data Reading &  Cleaning:
+
+We inspected the dataset for any missing values across all variables to ensure completeness. No missing values were found, so no imputation or removal was necessary.
+
+#### Overview of the variables and observation of the dataset
+
+```{r Overview of the variables and observation of the dataset}
+dplyr::glimpse(data)
+```
+
+
+
+#### Original questions used to collect the data
+
+```{r Original labels used to collect the data}
+labelled::var_label(data)
+```
+
+```{r, echo=FALSE}
+var_labels <- 
+  tibble::tibble(
+  Variable = c("WE1", "WE2", "WE3", "WE4", "WE5","WC1", "WC2","WC3","WC4","WC5","CP1", "CP2", "CP3", "CP4", "CP5","LMX1","LMX2","LMX3","LMX4","LMX5","LMX6","LMX7","CY1","CY2","CY3","CY4","CY5","CY6","Age","Tenure","EdQual","Gender","SUMWE","SUMWC","SUMCP","SUMLMX","SUMCY","AgeGrp","TenGrp"),
+  Label = c(
+    "I always seem to find myself to be in a hurry and racing against the clock.",
+    "I find myself continuing to work after my coworkers have called it quits.",
+    "I stay busy and engaged in too many activities at the same time.",
+    "I spend more time working than on socializing with friends, on hobbies, or on leisure activities.",
+    "I find myself doing two or three things at one time such as eating lunch and writing a memo.",
+    "It is important to me to work hard even when I do not enjoy what I am doing.",
+    "I feel that there is something inside me that drives me to work hard.",
+    "I feel obliged to work hard, even when it is not enjoyable.",
+    "I feel guilty when I take time off work.",
+    "It is hard for me to relax when I am not working.",
+    "I am satisfied with the success I have achieved in my career.",
+    "I am satisfied with the progress I have made toward meeting my overall career goals.",
+    "I am satisfied with the progress I have made toward meeting my goals for income.",
+    "I am satisfied with the progress I have made toward meeting my goals for advancement.",
+    "I am satisfied with the progress I have made toward meeting my goals for the development of new skills.",
+    "I am usually satisfied with what my leader does.",
+    "My leader has a good understanding of my job problems and needs.",
+    "My boss/leader recognizes my potentials.",
+    "Do you think that there are chances that your leader would use his/her power to help you solve problems in your work?",
+    "Are there chances that your leader would bail you out at his/her expense?",
+    "I have enough confidence in my leader that I would defend and justify his/her decision if he/she were not present to do so.",
+    "I have a very good working relationship with my leader.",
+    "I do NOT think my organization is sincere.",
+    "I am NOT taken seriously in this organization.",
+    "Most times I laugh it off when my organization pushes me to the wall.",
+    "I withhold suggestions at times because I know my office would do nothing about it.",
+    "I usually talk to my colleagues about management’s incompetence.",
+    "There are times I shrug my shoulders at what Management requires me to do.",
+    "Age of respondents.",
+    "Length of time spent at the organization.",
+    "Educational qualification of respondents.",
+    "Gender of respondents.",
+    "Sum of working excessively items.",
+    "Sum of working compulsively items.",
+    "Sum of career prospects items.",
+    "Sum of Leader-Member-Exchange items.",
+    "Sum of cynicism items.",
+    "Group data on age range.",
+    "Group data on tenure range."
+  )
+)
+knitr::kable(var_labels, 
+             caption = "Variable and Original Labels")
+```
+
+#### Retreive the original catogorical observation's answers
+
+```{r To understand the observation of each variable}
+# This function is repeated every time a variable is used in the study but for convenient just written one time
+data |> 
+  dplyr::select(CY4) |> 
+  dplyr::distinct()
+```
+
+
+## Statistical Methods
+
+---
+
+# Results
+
+## Descriptive Statistics
+
+## Correlation Analysis
+
+## Visualizations
+
+---
+
+# Discussion
+
+## Interpretation of Results
+
+## Implications
+
+## Limitations
+
+## Future Research
+
+---
+
+# Conclusion
